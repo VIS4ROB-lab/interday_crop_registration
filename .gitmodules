@@ -5,15 +5,3 @@
 # git submodule add https://github.com/naver/deep-image-retrieval.git crop_alignment/Hierarchical_Localization/third_party/deep-image-retrieval
 # git submodule add https://github.com/naver/r2d2.git crop_alignment/Hierarchical_Localization/third_party/r2d2
 # git submodule add https://github.com/magicleap/SuperGluePretrainedNetwork.git LoFTR/third_party/SuperGluePretrainedNetwork
-[submodule "crop_alignment/Hierarchical_Localization/third_party/d2net"]
-	path = crop_alignment/Hierarchical_Localization/third_party/d2net
-	url = https://github.com/mihaidusmanu/d2-net.git
-[submodule "crop_alignment/Hierarchical_Localization/third_party/SuperGluePretrainedNetwork"]
-	path = crop_alignment/Hierarchical_Localization/third_party/SuperGluePretrainedNetwork
-	url = https://github.com/magicleap/SuperGluePretrainedNetwork.git
-[submodule "crop_alignment/Hierarchical_Localization/third_party/deep-image-retrieval"]
-	path = crop_alignment/Hierarchical_Localization/third_party/deep-image-retrieval
-	url = https://github.com/naver/deep-image-retrieval.git
-[submodule "crop_alignment/Hierarchical_Localization/third_party/r2d2"]
-	path = crop_alignment/Hierarchical_Localization/third_party/r2d2
-	url = https://github.com/naver/r2d2.git
