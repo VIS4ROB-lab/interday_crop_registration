@@ -1,0 +1,51 @@
+# Crop registration pipeline
+
+## Installation
+* Install the requirements of [hloc](./Hierarchical_Localization/README.md#installation) first.
+    ```shell
+    cd interday_crop_registration/crop_alignment/Hierarchical_Localization/
+    python -m pip install -e .
+    ```
+* Then install the additional requirements.
+    ```shell
+    cd ../
+    pip install -r requirements.txt
+    ```
+* COLMAP is also required. It is recommended to install via Conda to avoid permission issues.
+    ```shell
+    conda install -c conda-forge colmap
+    ```
+## How to run
+There are two files provided, each correspond to an experiment in the paper.
+* [`run_exp.py`](./run_exp.py): Experiment V.B in the paper. Evaluate the registration pipeline's capability when varying the time intervals between the query and reference models. Query-Reference pairs are defined [here](./query_ref_pair.py).
+* [`run_pipeline.py`](./run_pipeline.py): Experiment V.C in the paper. Mimic the real use case. Run the registration pipeline sequentially, with ground truth model only used in refining the first model.
+
+To run them, follow the following steps:
+
+- Dataset
+    - [Download](../README.md#downloads) the dataset for crop alignment.
+    - Modify the paths in the `run_xxx.py` scripts to match the paths of the extracted downloaded files first. Open [`run_exp.py`](./run_exp.py) or [`run_pipeline.py`](./run_pipeline.py) and change the following path:
+        ```shell
+        # TODO: Change the path to match the paths of the extracted downloaded dataset
+        source_images_path = '/path/to/Wheat_2019_images'    
+        ```
+- Retrained models
+    - [Option 1] Use the retrained models used in the paper. In that case, you can skip this step. 
+    *Note: We provide the two models mentioned in the paper, one trained with considering height change and one without. The name idtifiers are `'loftr_23_0.5_hc'` and `'loftr_23_0.5'`. Here's an example of using them to identify a matcher from [run_exp.py](./run_exp.py#L276-L277): 
+        ```shell
+        extractor_matchers = [
+            ['sift', 'NN-ratio'],
+            ['superpoint_aachen', 'superglue'],
+            [None, 'loftr'],  # extractor for LoFTR is None because it does not need feature extractor
+            [None, 'loftr_23_0.5'],  # retrained LoFTR without height change
+            [None, 'loftr_23_0.5_hc'],  # retrained LoFTR with height change
+        ]
+        ```
+
+    - [Option 2] Retrain a new LoFTR model. Refer to [Hierarchical_Localization](./Hierarchical_Localization/README.md#modifications-to-enable-retrained-loftr-models) for instructions on enabling `hloc` to support self-trained LoFTR models.
+
+- Run the code
+    ```shell
+    python run_xxx.py
+    ```
+

@@ -1,0 +1,59 @@
+{
+    "campaign": {
+        "pipeline_version": "v0",
+        "campaign_status": 19,
+        "project_name": "ETHZ_eschikon_FPWW024_lot4",
+        "project_date": "20190402",
+        "flight_height": 28,
+        "campaign_path": "P:\\Evaluation\\UAV\\_DATA_\\Matrice600\\2019\\FIP_lot4\\20190402",
+        "projection_out": "epsg:2056",
+        "produce_single_orthos": false,
+        "settings_gcp_found": false,
+        "gcp_file": "P:\\Evaluation\\UAV\\_DATA_\\Matrice600\\2019\\FIP_lot4\\20190402\\GCP.csv"
+    },
+    "workspace": {
+        "workspace_path": "E:\\UAV\\_Workspace_\\_batch_Matrice600_2019_FIP_lot4_20190402"
+    },
+    "platform": {
+        "name": "M600P",
+        "projection_input": "epsg:4326",
+        "sfm_accuracy_cameras": [
+            1.0,
+            1.0,
+            5.0
+        ],
+        "sfm_accuracy_markers": [
+            0.01,
+            0.01,
+            0.01
+        ],
+        "sfm_keypoint_limit": 40000,
+        "sfm_tiepoint_limit": 4000
+    },
+    "sensors": {
+        "SonyA9": {
+            "name": "SonyA9",
+            "spacial_resolution_x_px": 6000,
+            "spacial_resolution_y_px": 4000,
+            "sensor_dimension_x_mm": 36.0,
+            "sensor_dimension_y_mm": 24.0,
+            "IFoV_x_max": 0.0030545454545454548,
+            "IFoV_y_max": 0.0030545454545454548,
+            "IFoV_x_eff": 0.003,
+            "IFoV_y_eff": 0.003,
+            "DEM_res": 0.003,
+            "focal_lengh_mm": 55.0,
+            "spectral_bands": [
+                "Red",
+                "Green",
+                "Blue"
+            ],
+            "spectral_FWHM_nm": "unknown",
+            "photo_extension": ".JPG",
+            "photo_folder": "JPEG",
+            "photo_folder_processed": "JPEG",
+            "fitting_band": null,
+            "camera_calibration": "P:\\Evaluation\\UAV\\_DATA_\\Matrice600\\2018\\Sensor_calibration\\sony9a_calib_baseALL.xml"
+        }
+    }
+}
