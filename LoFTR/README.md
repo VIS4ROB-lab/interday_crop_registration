@@ -1,7 +1,14 @@
 # LoFTR with the new supervision for crop imagery
 Add support for the crop dataset and introduce a new method of supervision: compensate for height difference overtime (height change).
 
-## How to train
+# Installation
+```shell
+cd interday_crop_registration/LoFTR
+conda env create -f environment.yaml
+conda activate loftr
+```
+
+# How to train
 * [Download](../README.md#downloads) the dataset for training.
 * Generate indices necessary to train LoFTR. 
 
@@ -15,9 +22,10 @@ Add support for the crop dataset and introduce a new method of supervision: comp
   ```shell
   python ../dataset/generate_indices.py
   ```
-* Download the `outdoor_ds.ckpt` from [here](#installation) and put it in `LoFTR/weights`.
-* Build the dataset symlinks:
-Symlink the datasets to the [`data`](./data/) directory under the main LoFTR project directory.
+
+* Download a weights file as a pretrained model. Here we use [`outdoor_ds.ckpt`](./weights/outdoor_ds.ckpt), which is already included in the repo. If you with to use other model, refer to [here](#installation-1). Remember to put the weights files in [`LoFTR/weights`](./weights/). 
+
+* Symlink the datasets to the [`data`](./data/) directory under the main LoFTR project directory.
   ```shell
   # crop
   # use absolute paths
@@ -27,7 +35,10 @@ Symlink the datasets to the [`data`](./data/) directory under the main LoFTR pro
   # -- # dataset indices
   ln -s /path/to/dataset/crop_indices/* /path/to/LoFTR/data/crop/index
   ```
-* Modify the [configurations](./configs/data/crop_real_trainval_360.py) and train [settings](./scripts/reproduce_train/crop_real_ds.sh) if you want.
+* Modify the [configurations](./configs/data/crop_real_trainval_360.py) and train [settings](./scripts/reproduce_train/crop_real_ds.sh) if you want. To enable training with height change, set the following item to True in [configurations](./configs/data/crop_real_trainval_360.py).
+  ```shell
+  cfg.TRAINER.COMPENSATE_HEIGHT_DIFF = True
+  ```
 * Run the script.
   ``` shell
   sh scripts/reproduce_train/crop_real_ds.sh

@@ -1,4 +1,4 @@
 open3d
 shapely
 kapture
-shutil
+pytest-shutil

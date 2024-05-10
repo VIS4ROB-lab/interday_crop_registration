@@ -1,0 +1,12 @@
+name: hloc
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - colmap
+  - pip
+  - pip:
+      - -e ./Hierarchical_Localization/
+      - -r requirements.txt

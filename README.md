@@ -30,6 +30,7 @@ Retrieve the repo ans submodules first. Then please refer to the instructions of
 git clone --recursive https://github.com/VIS4ROB-lab/interday_crop_registration/
 
 # This repository includes external local features as git submodules, don't forget to pull submodules 
+cd interday_crop_registration
 git submodule update --init --recursive`
 ```
 
@@ -37,7 +38,7 @@ For crop alignment, please follow the steps [here](./crop_alignment/README.md#in
 
 For LoFTR, please follow the steps [here](./LoFTR/README.md#installation).
 
-# Download Datasets
+# Download datasets
 The `dataset` folder in this repo does not contain original images, generated depth images. 
 Before starting to run certain tasks, you need to download the corresponding images from the datasets that are not included directly in this repo. 
 

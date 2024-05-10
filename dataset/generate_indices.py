@@ -11,6 +11,7 @@ from datetime import datetime
 class LoFTRDataGeneratorReal:
     def __init__(self, dataset_path, source_images_path, source_depth_images_path, date_difference=23, overlap_thres=0.5, new_width=None):
         self.dataset_path = dataset_path
+        self.save_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'crop_indices')
         self.source_images_path = source_images_path
         self.source_depth_images_path = source_depth_images_path
         subfolders = next(os.walk(self.dataset_path))[1]
@@ -36,41 +37,37 @@ class LoFTRDataGeneratorReal:
 
         self.train_val_split(val_percentage)
 
-        if not os.path.exists('crop_indices'):
-            os.makedirs('crop_indices')
-        if not os.path.exists('crop_indices/scene_info'):
-            os.makedirs('crop_indices/scene_info')
-        if not os.path.exists('crop_indices/scene_info_val'):
-            os.makedirs('crop_indices/scene_info_val')
-        if not os.path.exists('crop_indices/trainvaltest_list'):
-            os.makedirs('crop_indices/trainvaltest_list')
-            with open('crop_indices/trainvaltest_list/train_list.txt', 'w') as f:
-                pass
-            with open('crop_indices/trainvaltest_list/val_list.txt', 'w') as f:
-                pass
+        os.makedirs(self.save_path, exist_ok=True)
+        os.makedirs(os.path.join(self.save_path, 'scene_info'), exist_ok=True)
+        os.makedirs(os.path.join(self.save_path, 'scene_info_val'), exist_ok=True)
+        os.makedirs(os.path.join(self.save_path, 'trainvaltest_list'), exist_ok=True)
+        # with open(os.path.join(self.save_path, 'trainvaltest_list', 'train_list.txt'), 'w') as f:
+        #     pass
+        # with open(os.path.join(self.save_path, 'trainvaltest_list', 'val_list.txt'), 'w') as f:
+        #     pass
 
         print("length of train pairs: ", len(self.train_pairs))
         # Save the generated data to a .npz file
-        np.savez_compressed('crop_indices/scene_info/'+scene,
+        np.savez_compressed(os.path.join(self.save_path, 'scene_info', scene),
                             image_paths=self.image_paths,
                             depth_paths=self.depth_paths,
                             intrinsics=self.intrinsics,
                             poses=self.poses,
                             height_map_paths = np.array(self.height_map_paths, dtype=object),
                             pair_infos=np.array(self.train_pairs, dtype=object))
-        with open('crop_indices/trainvaltest_list/train_list.txt', 'a') as f:
+        with open(os.path.join(self.save_path, 'trainvaltest_list', 'train_list.txt'), 'a') as f:
             f.write(scene+'.npz\n')
         
         if val_percentage:
             print("length of val pairs: ", len(self.val_pairs))
-            np.savez_compressed('crop_indices/scene_info_val/'+scene+'_val',
+            np.savez_compressed(os.path.join(self.save_path, 'scene_info_val', scene+'_val'),
                         image_paths=self.image_paths,
                         depth_paths=self.depth_paths,
                         intrinsics=self.intrinsics,
                         poses=self.poses,
                         height_map_paths = np.array(self.height_map_paths, dtype=object),
                         pair_infos=np.array(self.val_pairs, dtype=object))
-            with open('crop_indices/trainvaltest_list/val_list.txt', 'a') as f:
+            with open(os.path.join(self.save_path, 'trainvaltest_list', 'val_list.txt'), 'a') as f:
                 f.write(scene+'_val.npz\n')
         
 
@@ -279,7 +276,7 @@ class LoFTRDataGeneratorReal:
     
 
 if __name__ == "__main__":
-    # Create indices which will be used to train LoFTR
+    # Create indices to be used to train LoFTR
 
     # Current path of the training set: dataset/crop/train.
     basedir = os.path.dirname(os.path.abspath(__file__))
