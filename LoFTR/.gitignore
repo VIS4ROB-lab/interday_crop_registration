@@ -7,8 +7,9 @@ __pycache__/
 tmp.*
 */.ipynb_checkpoints/*
 
-# logs/
-weights/
+logs/
+weights/*
+!weights/outdoor_ds.ckpt
 dump/
 demo/*.mp4
 demo/demo_images/
@@ -25,5 +26,3 @@ tools/draw_QccDayNights.py
 scripts/slurm/
 scripts/sbatch_submit.sh
 src/utils/client.py
-
-data/crop/

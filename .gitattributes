@@ -1,3 +1,4 @@
 dataset/crop/**/*.npz filter=lfs diff=lfs merge=lfs -text
 dataset/crop/**/*.h5 filter=lfs diff=lfs merge=lfs -text
 dataset/crop/**/*JPG filter=lfs diff=lfs merge=lfs -text
+LoFTR/weights/outdoor_ds.ckpt filter=lfs diff=lfs merge=lfs -text
