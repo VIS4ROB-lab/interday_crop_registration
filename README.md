@@ -39,16 +39,20 @@ For crop alignment, please follow the steps [here](./crop_alignment/README.md#in
 For LoFTR, please follow the steps [here](./LoFTR/README.md#installation).
 
 # Download datasets
-The `dataset` folder in this repo does not contain original images, generated depth images. 
-Before starting to run certain tasks, you need to download the corresponding images from the datasets that are not included directly in this repo. 
+The `dataset` folder in this repo does not contain original images or associated depth images. 
+Before starting to run certain tasks, you need to download the corresponding data.
 
-* To retrain LoFTR, the images and depth images of the Wheat Dataset from 2018 are needed. Download and extract the files below:
+ Run the script with the following command. The required packages is the same as that of [crop_lignment](../crop_alignment/README.md#installation).
+```
+python ./dataset/dataset_downloader.py <destination_folder> <dataset>
+```
 
-  [Wheat_2018_images.xxx](link1) and [Wheat_2018_depth_images.xxx](link2)
+  Replace `<destination_folder>` with the path to the destination folder where you want to save the downloaded datasets.
 
-* To perform crop alignment, the images of the Wheat Dataset from 2019 are needed. Download and extract the file below:
+  Replace `<dataset>` with one of the following choices:
+  - `train`: Downloads the images and depth images of the Wheat Dataset from 2018 to retrain LoFTR. (*depth images not available yet, we are working to upload them.)
+  - `alignment`: Downloads the images of the Wheat Dataset from 2019 to perform crop alignment.
 
-  [Wheat_2019.xxx](link3)
 
 # How to run
 Please refer to each subdirectory for further instruction

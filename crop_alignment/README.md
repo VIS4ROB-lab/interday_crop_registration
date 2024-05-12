@@ -14,14 +14,14 @@ There are two files provided, each correspond to an experiment in the paper.
 
 To run them, follow the following steps:
 
-- Dataset
+1. Prepare datasets
     - [Download](../README.md#downloads) the dataset for crop alignment.
     - Modify the paths in the `run_xxx.py` scripts to match the paths of the extracted downloaded files first. Open [`run_exp.py`](./run_exp.py) or [`run_pipeline.py`](./run_pipeline.py) and change the following path:
         ```shell
         # TODO: Change the path to match the paths of the extracted downloaded dataset
         source_images_path = '/path/to/Wheat_2019_images'    
         ```
-- Retrained models
+2. Invoke retrained models
     - [Option 1] Use the retrained models used in the paper. In that case, you can skip this step. 
     *Note: We provide the two models mentioned in the paper, one trained with considering height change and one without. The name idtifiers are `'loftr_23_0.5_hc'` and `'loftr_23_0.5'`. Here's an example of using them to identify a matcher from [`run_exp.py`](./run_exp.py#L276-L277): 
         ```shell
@@ -36,7 +36,7 @@ To run them, follow the following steps:
 
     - [Option 2] [Retrain](../LoFTR/README.md#how-to-train) a new LoFTR model. Refer to [Hierarchical_Localization](./Hierarchical_Localization/README.md#modifications-to-enable-retrained-loftr-models) for instructions on enabling `hloc` to support self-trained LoFTR models.
 
-- Run the code
+3. Run the code
     ```shell
     python run_xxx.py
     ```

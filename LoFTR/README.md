@@ -1,4 +1,4 @@
-# LoFTR with the new supervision for crop imagery
+# LoFTR with height change handling for crop imagery
 Add support for the crop dataset and introduce a new method of supervision: compensate for height difference overtime (height change).
 
 # Installation
@@ -9,40 +9,40 @@ conda activate loftr
 ```
 
 # How to train
-* [Download](../README.md#downloads) the dataset for training.
-* Generate indices necessary to train LoFTR. 
+1. [Download](../README.md#downloads) the dataset for training.
+2. Generate indices necessary to train LoFTR. 
 
-  You'll need to modify the paths in it to match the paths of the extracted downloaded files first. Open [`dataset/generate_indices.py`](../dataset/generate_indices.py) and change the following path:
-  ```shell
-  # TODO: Change the path to match the paths of the extracted downloaded dataset
-  source_images_path = '/path/to/Wheat_2018_images'
-  source_depth_images_path = '/path/to/Wheat_2018_depth_images'
-  ```
-  Then run the script. The required packages needed to run it is the same as that of [crop_lignment](../crop_alignment/README.md#installation).
-  ```shell
-  python ../dataset/generate_indices.py
-  ```
+    You'll need to modify the paths in it to match the paths of the extracted downloaded files first. Open [`dataset/generate_indices.py`](../dataset/generate_indices.py) and change the following path:
+    ```shell
+    # TODO: Change the path to match the paths of the extracted downloaded dataset
+    source_images_path = '/path/to/Wheat_2018_images'
+    source_depth_images_path = '/path/to/Wheat_2018_depth_images'
+    ```
+    Then run the script. The required packages needed to run it is the same as that of [crop_lignment](../crop_alignment/README.md#installation).
+    ```shell
+    python ../dataset/generate_indices.py
+    ```
 
-* Download a weights file as a pretrained model. Here we use [`outdoor_ds.ckpt`](./weights/outdoor_ds.ckpt), which is already included in the repo. If you with to use other model, refer to [here](#installation-1). Remember to put the weights files in [`LoFTR/weights`](./weights/). 
+3. Download a weights file as a pretrained model. Here we use [`outdoor_ds.ckpt`](./weights/outdoor_ds.ckpt), which is already included in the repo. If you with to use other model, refer to [here](#installation-1). Remember to put the weights files in [`LoFTR/weights`](./weights/). 
 
-* Symlink the datasets to the [`data`](./data/) directory under the main LoFTR project directory.
-  ```shell
-  # crop
-  # use absolute paths
-  # -- # train and test dataset (train and test share the same dataset)
-  ln -s /path/to/dataset/crop/train/* /path/to/LoFTR/data/crop/train
-  ln -s /path/to/dataset/crop/train/* /path/to/LoFTR/data/crop/test
-  # -- # dataset indices
-  ln -s /path/to/dataset/crop_indices/* /path/to/LoFTR/data/crop/index
-  ```
-* Modify the [configurations](./configs/data/crop_real_trainval_360.py) and train [settings](./scripts/reproduce_train/crop_real_ds.sh) if you want. To enable training with height change, set the following item to True in [configurations](./configs/data/crop_real_trainval_360.py).
-  ```shell
-  cfg.TRAINER.COMPENSATE_HEIGHT_DIFF = True
-  ```
-* Run the script.
-  ``` shell
-  sh scripts/reproduce_train/crop_real_ds.sh
-  ```
+4. Symlink the datasets to the [`data`](./data/) directory under the main LoFTR project directory.
+    ```shell
+    # crop
+    # use absolute paths
+    # -- # train and test dataset (train and test share the same dataset)
+    ln -s /path/to/dataset/crop/train/* /path/to/LoFTR/data/crop/train
+    ln -s /path/to/dataset/crop/train/* /path/to/LoFTR/data/crop/test
+    # -- # dataset indices
+    ln -s /path/to/dataset/crop_indices/* /path/to/LoFTR/data/crop/index
+    ```
+5. Modify the [configurations](./configs/data/crop_real_trainval_360.py) and train [settings](./scripts/reproduce_train/crop_real_ds.sh) if you want. To enable training with height change, set the following item to True in [configurations](./configs/data/crop_real_trainval_360.py).
+    ```shell
+    cfg.TRAINER.COMPENSATE_HEIGHT_DIFF = True
+    ```
+6. Run the script.
+    ``` shell
+    sh scripts/reproduce_train/crop_real_ds.sh
+    ```
 
 For environment setup and details relating to the original LoFTR, please refer to the original [README](./README.md#loftr-detector-free-local-feature-matching-with-transformers).
 

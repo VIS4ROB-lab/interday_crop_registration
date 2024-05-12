@@ -244,10 +244,10 @@ if __name__ == "__main__":
     # TODO: Change the path to match the paths of the extracted downloaded dataset
     source_images_path = '/path/to/Wheat_2019_images'    
 
-    initial_models_path = os.path.join(output_path, 'Wheat_2019', 'initial_models')
-    image_poses_file_name = 'image_poses_tight.txt'
-
     experiment_name = 'exp_2019'
+
+    initial_models_path = os.path.join(output_path, experiment_name, 'initial_models')
+    image_poses_file_name = 'image_poses_tight.txt'
 
     extractor_matchers = [
                         ['sift', 'NN-ratio'],
