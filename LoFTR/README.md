@@ -9,7 +9,7 @@ conda activate loftr
 ```
 
 # How to train
-1. [Download](../README.md#downloads) the dataset for training.
+1. [Download](../README.md#download-datasets) the dataset for training.
 2. Generate indices necessary to train LoFTR. 
 
     You'll need to modify the paths in it to match the paths of the extracted downloaded files first. Open [`dataset/generate_indices.py`](../dataset/generate_indices.py) and change the following path:
@@ -18,7 +18,7 @@ conda activate loftr
     source_images_path = '/path/to/Wheat_2018_images'
     source_depth_images_path = '/path/to/Wheat_2018_depth_images'
     ```
-    Then run the script. The required packages needed to run it is the same as that of [crop_lignment](../crop_alignment/README.md#installation).
+    Then run the script. The required packages are the same as that of [crop_lignment](../crop_alignment/README.md#installation).
     ```shell
     python ../dataset/generate_indices.py
     ```

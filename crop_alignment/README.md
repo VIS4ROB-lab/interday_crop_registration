@@ -1,4 +1,5 @@
 # Crop registration pipeline
+The pipeline to compute 3D models of a crop field and to properly register them. Includes the codes of the experiments done in the paper. This relies on the repository [Hierarchical_Localization](https://github.com/cvg/Hierarchical-Localization) for performing localization between query and reference images.
 
 ## Installation
 ```shell
@@ -15,7 +16,7 @@ There are two files provided, each correspond to an experiment in the paper.
 To run them, follow the following steps:
 
 1. Prepare datasets
-    - [Download](../README.md#downloads) the dataset for crop alignment.
+    - [Download](../README.md#download-datasets) the dataset for crop alignment.
     - Modify the paths in the `run_xxx.py` scripts to match the paths of the extracted downloaded files first. Open [`run_exp.py`](./run_exp.py) or [`run_pipeline.py`](./run_pipeline.py) and change the following path:
         ```shell
         # TODO: Change the path to match the paths of the extracted downloaded dataset

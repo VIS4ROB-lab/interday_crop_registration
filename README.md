@@ -16,7 +16,7 @@ If you use this code in your academic work, please cite ([PDF](https://www.resea
 # Repo structure
 This repo includes code for two tasks: crop alignment and train LoFTR for crop images. For clarity, we gather the relevant codes in different folders.
 
-* [dataset](./dataset/): The dataset (except images and depth images) needed to excute the registration pipeline and train LoFTR. A script needed to run before retraining LoFTR is also included here.
+* [dataset](./dataset/): The dataset (except images and depth images) needed to excute the registration pipeline and train LoFTR. Scripts to download addition data, and prepare the datasets for training LoFTR are also included.
 
 * [crop_alignment](./crop_alignment/): The pipeline to compute 3D models of a crop field and to properly register them. Includes the codes of the experiments done in the paper. This relies on the repository [Hierarchical_Localization](https://github.com/cvg/Hierarchical-Localization) for performing localization between query and reference images.
 
@@ -42,7 +42,7 @@ For LoFTR, please follow the steps [here](./LoFTR/README.md#installation).
 The `dataset` folder in this repo does not contain original images or associated depth images. 
 Before starting to run certain tasks, you need to download the corresponding data.
 
- Run the script with the following command. The required packages is the same as that of [crop_lignment](../crop_alignment/README.md#installation).
+ Run the script with the following command.The required packages are the same as that of [crop_lignment](../crop_alignment/README.md#installation).
 ```
 python ./dataset/dataset_downloader.py <destination_folder> <dataset>
 ```
@@ -55,4 +55,4 @@ python ./dataset/dataset_downloader.py <destination_folder> <dataset>
 
 
 # How to run
-Please refer to each subdirectory for further instruction
+Please refer to each subdirectory for further instructions.

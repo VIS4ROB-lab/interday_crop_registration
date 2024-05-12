@@ -1,10 +1,11 @@
 # dataset
-This folder contains the crop dataset used to train LoFTR and do the crop registration task.
-The scripts are used to generate necessary files befor training LoFTR.
+This folder contains the skeleton of the crop dataset used to train LoFTR and do the crop alignment task.
 
-## File structure
-*Note: The datasets here do not contain original images, generated depth images. Please [download](../README.md#downloads) thems eperately. The code will use the images and depth images by their absolute paths, and sometimes create symbolic links to them.
+It also includes scripts to download addition data, and prepare the datasets for training LoFTR.
 
+*Note: The datasets here do not contain original images or generated depth images. Please [download](../README.md#download-datasets) them seperately. The code will use the images and depth images by their absolute paths, and sometimes create symbolic links to them.
+
+## Folder structure
 
 * `crops`
     * `train`: Dates from 2018 used to [train LoFTR](../LoFTR/README.md)

@@ -21,7 +21,7 @@ class DatasetDownloader:
             os.makedirs(subfolder_path)
 
     def download_file(self, subfolder_name, file_name, destination_folder):
-        file_url = f"{self.url_base}%2F{subfolder_name}%2FRAW%2F{self.file_type}&files={file_name}"
+        file_url = f"{self.url_base}%2F{subfolder_name}%2F{'RAW'}%2F{self.file_type}&files={file_name}"
         response = requests.get(file_url)
         if response.status_code == 200:
             with open(os.path.join(destination_folder, file_name), 'wb') as f:
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     dataset_path = os.path.join(basedir, "crop")
 
     parser = argparse.ArgumentParser(description="Download dataset")
-    parser.add_argument("destination_folder", help="Destination folder path (without the final part)")
+    parser.add_argument("destination_folder", help="Destination folder path")
     parser.add_argument("dataset", choices=["train", "alignment"], help="Dataset to download")
     args = parser.parse_args()
 
