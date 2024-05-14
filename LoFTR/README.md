@@ -18,7 +18,7 @@ conda activate loftr
     source_images_path = '/path/to/Wheat_2018_images'
     source_depth_images_path = '/path/to/Wheat_2018_depth_images'
     ```
-    Then run the script. The required packages are the same as that of [crop_lignment](../crop_alignment/README.md#installation).
+    Then run the script.
     ```shell
     python ../dataset/generate_indices.py
     ```

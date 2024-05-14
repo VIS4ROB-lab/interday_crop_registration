@@ -8,7 +8,7 @@ class DatasetDownloader:
         if file_type =='JPEG':
             self.url_base = "https://libdrive.ethz.ch/index.php/s/0cNeZyqbrkw63Ic/download?path="
         else:
-            self.url_base = "https://libdrive.ethz.ch/index.php/s/xxx/download?path="
+            self.url_base = "https://libdrive.ethz.ch/index.php/s/OFlXjjSz3536Pod/download?path="
         self.root_folder_path = root_folder_path
         self.pose_file_name = pose_file_name
         self.destination_folder = destination_folder
@@ -31,18 +31,19 @@ class DatasetDownloader:
         with open(pose_file_path, 'r') as file:
             jpg_files = file.readlines()[1:]
             for jpg_line in tqdm(jpg_files):
-                file_name = jpg_line.split(',')[0]
-                if self.file_type == "depth_images":
-                    file_name += ".h5"
-                # file_path = os.path.join(self.destination_folder, subfolder_name, 'RAW', self.file_type, file_name)
-                # if not os.path.exists(file_path):
-                destination_folder = os.path.join(self.destination_folder, subfolder_name, 'RAW', self.file_type)
-                self.download_file(subfolder_name, file_name, destination_folder)
+                if jpg_line.strip() != '':
+                    file_name = jpg_line.split(',')[0]
+                    if self.file_type == "depth_images":
+                        file_name += ".h5"
+                    file_path = os.path.join(self.destination_folder, subfolder_name, 'RAW', self.file_type, file_name)
+                    if not os.path.exists(file_path):
+                        destination_folder = os.path.join(self.destination_folder, subfolder_name, 'RAW', self.file_type)
+                        self.download_file(subfolder_name, file_name, destination_folder)
 
     def download_dataset(self):
         for subfolder_name in os.listdir(self.root_folder_path):
             pose_file_path = os.path.join(self.root_folder_path, subfolder_name, "Processed", self.pose_file_name)
-            print(f"Downloading {self.file_type} for {subfolder_name} data...")
+            print(f"Downloading {self.file_type} of {subfolder_name} ...")
             self.create_subfolders(subfolder_name)
             self.check_and_download_images(subfolder_name, pose_file_path)
 
@@ -63,10 +64,6 @@ def main(root_folder_path, destination_folder, dataset):
         file_type = ['JPEG', 'JPEG']
 
     for i in range(len(root_folder_path)):
-        if dataset == "train" and i == 1:
-            # TODO upload depth images
-            continue
-
         print(f"Start downloading {os.path.basename(root_folder_path[i])} data to {destination_folder[i]}")
         DatasetDownloader(root_folder_path[i], pose_file_name[i], destination_folder[i], file_type[i])
         print()
@@ -74,9 +71,8 @@ def main(root_folder_path, destination_folder, dataset):
 if __name__ == "__main__":
     # Download datasets to the destination folder
 
-    # Current path of the dataset skeleton folder.
     basedir = os.path.dirname(os.path.abspath(__file__))
-    dataset_path = os.path.join(basedir, "crop")
+    dataset_path = os.path.join(basedir, "crop")  # Current path of the dataset skeleton folder
 
     parser = argparse.ArgumentParser(description="Download dataset")
     parser.add_argument("destination_folder", help="Destination folder path")

@@ -34,15 +34,15 @@ cd interday_crop_registration
 git submodule update --init --recursive`
 ```
 
-For crop alignment, please follow the steps [here](./crop_alignment/README.md#installation).
+For crop alignment, please follow the steps [here](./crop_alignment/README.md#installation). You also need this environment to run the scripts in the [dataset](./dataset/) folder.
 
 For LoFTR, please follow the steps [here](./LoFTR/README.md#installation).
 
 # Download datasets
-The `dataset` folder in this repo does not contain original images or associated depth images. 
+The `dataset` folder in this repo is only a skeleton. It does not contain original images or associated depth images. 
 Before starting to run certain tasks, you need to download the corresponding data.
 
- Run the script with the following command.The required packages are the same as that of [crop_lignment](../crop_alignment/README.md#installation).
+Run the script with the following command.
 ```
 python ./dataset/dataset_downloader.py <destination_folder> <dataset>
 ```
@@ -50,7 +50,7 @@ python ./dataset/dataset_downloader.py <destination_folder> <dataset>
   Replace `<destination_folder>` with the path to the destination folder where you want to save the downloaded datasets.
 
   Replace `<dataset>` with one of the following choices:
-  - `train`: Downloads the images and depth images of the Wheat Dataset from 2018 to retrain LoFTR. (*depth images not available yet, we are working to upload them.)
+  - `train`: Downloads the images and depth images of the Wheat Dataset from 2018 to retrain LoFTR.
   - `alignment`: Downloads the images of the Wheat Dataset from 2019 to perform crop alignment.
 
 
